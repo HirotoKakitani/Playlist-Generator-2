@@ -25,6 +25,9 @@ $(document).ready(function(){
 			console.log(tabs[0].url);
 			console.log(vidID);
 			console.log(idList);
+            
+            //TODO testing chrome.storage
+            chrome.storage.sync.set({"testKey": vidID});
 			
 		});
 	});
@@ -43,5 +46,10 @@ $(document).ready(function(){
 		});
 		console.log(playlistURL);
 		
+        //TODO testing chrome.storage
+        chrome.storage.sync.get(null, function(items){
+            var temp = Object.keys(items);
+            alert(temp);
+        });
 	});
 });
