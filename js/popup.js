@@ -3,17 +3,24 @@ var playlistURL = "https://www.youtube.com/embed/";
 var first = true;
 var idList = [];
 var vidID = null;
-//TODO  chrome storage
 /*
 	1. when add is pressed, store the vidID in chrome storage area.
 	2. when play is pressed, get every ID in chrome storage area and generate playlist URL
 */
 $(document).ready(function(){
-	//chrome.storage.sync.set();
 	console.log("document loaded");
+
+    //get from storage, update idList
+    chrome.storage.sync.get("list", function(result){
+        //gets most up to date list from storage
+        if (result.list){
+            idList = result.list;
+        } 
+    });
+
 	$("#add").click(function(){
 		console.log("Add button pressed");
-		chrome.tabs.query({'active': true, 'currentWindow': true},function(tabs){ //look into lastFocusedWindow
+		chrome.tabs.query({'active': true, 'currentWindow': true},function(tabs){
 			//parse tabs[0].url for video id, then push to idList
 			vidID = tabs[0].url.split("https://www.youtube.com/watch?v=").pop();
 			
@@ -22,17 +29,18 @@ $(document).ready(function(){
 				console.log("Cannot add this video");
 			};
 			idList.push(vidID);	//push current url to list
-			console.log(tabs[0].url);
-			console.log(vidID);
-			console.log(idList);
             
-            //TODO testing chrome.storage
-            chrome.storage.sync.set({"testKey": vidID});
-			
+            // updates the list in storage
+			chrome.storage.sync.set({"list":idList});
 		});
 	});
+
 	$("#play").click(function(){
 		console.log("play button pressed");
+        // get current version of list 
+        chrome.storage.sync.get(null, function(items){
+            idList = items.list;
+        });
 		$.each(idList, function(i, item){
 			if (first){
 				playlistURL = playlistURL.concat(item);
@@ -45,11 +53,5 @@ $(document).ready(function(){
 			}
 		});
 		console.log(playlistURL);
-		
-        //TODO testing chrome.storage
-        chrome.storage.sync.get(null, function(items){
-            var temp = Object.keys(items);
-            alert(temp);
-        });
 	});
 });
