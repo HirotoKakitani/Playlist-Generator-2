@@ -40,6 +40,9 @@ $(document).ready(function(){
         // get current version of list 
         chrome.storage.sync.get(null, function(items){
             idList = items.list;
+			if (!idList){
+				idList = [];
+			}
         });
 		$.each(idList, function(i, item){
 			if (first){
@@ -53,5 +56,14 @@ $(document).ready(function(){
 			}
 		});
 		console.log(playlistURL);
+	});
+	
+	$("#del").click(function(){
+		if (confirm("Clear Playlist?")){
+			chrome.storage.sync.clear(function(){
+				idList = [];
+				console.log("removed");	
+			});		
+		}
 	});
 });
