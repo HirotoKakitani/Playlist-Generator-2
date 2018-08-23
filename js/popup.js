@@ -55,7 +55,8 @@ $(document).ready(function(){
 				playlistURL = playlistURL.concat(",");
 			}
 		});
-		console.log(playlistURL);
+		chrome.tabs.create({url:playlistURL});	//create new tab for video
+		console.log(playlistURL);	
 	});
 	
 	$("#del").click(function(){
@@ -65,5 +66,12 @@ $(document).ready(function(){
 				console.log("removed");	
 			});		
 		}
+	});
+	
+	$("#edit").click(function(){
+		console.log("editing playlist");
+		//TODO go through videos in list, grab their titles, and list them all
+		//TODO create functionality for removing a video, as well as moving the video up/down the list
+		
 	});
 });
