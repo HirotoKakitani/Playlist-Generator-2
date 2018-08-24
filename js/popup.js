@@ -67,11 +67,9 @@ $(document).ready(function(){
 			});		
 		}
 	});
-	
+	/*
 	$("#edit").click(function(){
 		console.log("editing playlist");
-		//TODO go through videos in list, grab their titles, and list them all
-		//TODO create functionality for removing a video, as well as moving the video up/down the list
-		
-	});
+	
+	});*/
 });
