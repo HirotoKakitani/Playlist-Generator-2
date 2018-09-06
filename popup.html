@@ -2,20 +2,28 @@
 <html>
 	<head>
 		<style>
-			button {
-				height: 30px;
-				width: 30px;
+			.buttonWrapper {
+				display: table;                
 				outline: none;
-				float: left;
 			}
+            .buttonCell {
+                display: table-cell;
+            }
 		</style>
 	</head>
 	<body>
-		<button id="add">A</button>
-		<button id="play">P</button>
-		<button id="del">D</button>
-		<form action="edit.html"><button id="edit" type="submit">E</button></form>
-		<script src="js/jquery-3.3.1.min.js"></script>
+		<div>
+            Search: <input id="keyword"></input>
+            <button id="submit">Search</button>
+		</div>
+        <div class ="buttonWrapper">
+            <button id="add">A</button>
+            <button id="play">P</button>
+            <button id="del">D</button>
+            <form action="edit.html"><button id="edit" type="submit">E</button></form>
+		</div>
+        <script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/config.js"></script>
 		<script src="js/popup.js"></script>
 
 	</body>

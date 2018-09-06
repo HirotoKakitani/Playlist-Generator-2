@@ -13,7 +13,7 @@ $(document).ready(function(){
             maxResults: "15",
             q: inputTerm,
             type: "video",
-            key: "AIzaSyDwuRsJnLjvjOvYCKrvAdUJHfQ7NHFWPjE"},
+            key: ""},
             function (data){
                 $.each(data.items, function(i, item){   //look into why we need an i for responses to show
                     console.log(item.snippet.title);
