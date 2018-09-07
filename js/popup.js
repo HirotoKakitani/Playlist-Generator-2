@@ -10,7 +10,6 @@ var vidID = null;
 
 $(document).ready(function(){
     console.log("document loaded");
-    console.log(config.KEY)
     //get from storage, update idList
     chrome.storage.sync.get("list", function(result){
         //gets most up to date list from storage
@@ -23,7 +22,7 @@ $(document).ready(function(){
         console.log("pressed");
         inputTerm = document.getElementById("keyword").value;
         console.log(inputTerm);
-        /*$.get(
+        $.get(
             "https://www.googleapis.com/youtube/v3/search",
             {
             part: "snippet",
@@ -32,11 +31,11 @@ $(document).ready(function(){
             type: "video",
             key: config.KEY},
             function (data){
-                $.each(data.items, function(i, item){   //look into why we need an i for responses to show
+                $.each(data.items, function(i, item){ 
                     console.log(item.snippet.title);
+					//TODO create embedded video for each entry, as well as button for adding
                 });
             });
-        */
     });
 
     $("#add").click(function(){
